@@ -189,10 +189,8 @@ You **must** upload media files to Postiz before using them in posts. Many platf
 3. Use that URL in your post's `-m` parameter
 
 **Supported formats:**
-- **Images:** PNG, JPG, JPEG, GIF, WEBP, SVG, BMP, ICO
-- **Videos:** MP4, MOV, AVI, MKV, WEBM, FLV, WMV, M4V, MPEG, MPG, 3GP
-- **Audio:** MP3, WAV, OGG, AAC, FLAC, M4A
-- **Documents:** PDF, DOC, DOCX
+- **Images:** PNG, JPG, JPEG, GIF
+- **Videos:** MP4
 
 **Example:**
 ```bash
