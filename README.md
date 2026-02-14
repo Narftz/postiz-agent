@@ -614,7 +614,7 @@ AGPL-3.0
 ## Links
 
 - **Website:** [postiz.com](https://postiz.com)
-- **API Docs:** [postiz.com/api-docs](https://postiz.com/api-docs)
+- **API Docs:** [docs.postiz.com](https://docs.postiz.com)
 - **GitHub:** [gitroomhq/postiz-app](https://github.com/gitroomhq/postiz-app)
 - **Issues:** [Report bugs](https://github.com/gitroomhq/postiz-app/issues)
 
