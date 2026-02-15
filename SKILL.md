@@ -21,6 +21,7 @@ The fundamental pattern for using Postiz CLI:
 2. **Fetch** - Use integration tools to retrieve dynamic data (flairs, playlists, companies)
 3. **Prepare** - Upload media files if needed
 4. **Post** - Create posts with content, media, and platform-specific settings
+5. **Analyze** - Track performance with platform and post-level analytics
 
 ```bash
 # 1. Discover
@@ -35,6 +36,10 @@ postiz upload image.jpg
 
 # 4. Post
 postiz posts:create -c "Content" -m "image.jpg" -i "<integration-id>"
+
+# 5. Analyze
+postiz analytics:platform <integration-id> -d 30
+postiz analytics:post <post-id> -d 7
 ```
 
 ---
@@ -111,6 +116,24 @@ postiz posts:list --startDate "2024-01-01T00:00:00Z" --endDate "2024-12-31T23:59
 # Delete post
 postiz posts:delete <post-id>
 ```
+
+### Analytics
+
+```bash
+# Get platform analytics (default: last 7 days)
+postiz analytics:platform <integration-id>
+
+# Get platform analytics for last 30 days
+postiz analytics:platform <integration-id> -d 30
+
+# Get post analytics (default: last 7 days)
+postiz analytics:post <post-id>
+
+# Get post analytics for last 30 days
+postiz analytics:post <post-id> -d 30
+```
+
+Returns an array of metrics (e.g. Followers, Impressions, Likes, Comments) with daily data points and percentage change over the period.
 
 ### Media Upload
 
@@ -607,6 +630,12 @@ postiz posts:create --json file.json                                            
 postiz posts:list                                  # List posts
 postiz posts:delete <id>                          # Delete post
 postiz upload <file>                              # Upload media
+
+# Analytics
+postiz analytics:platform <id>                    # Platform analytics (7 days)
+postiz analytics:platform <id> -d 30             # Platform analytics (30 days)
+postiz analytics:post <id>                        # Post analytics (7 days)
+postiz analytics:post <id> -d 30                 # Post analytics (30 days)
 
 # Help
 postiz --help                                     # Show help

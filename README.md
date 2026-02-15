@@ -172,6 +172,26 @@ postiz posts:delete <post-id>
 
 ---
 
+### Analytics
+
+**Get platform analytics**
+```bash
+postiz analytics:platform <integration-id>
+postiz analytics:platform <integration-id> -d 30
+```
+
+Returns metrics like followers, impressions, and engagement over time for a specific integration/channel. The `-d` flag specifies the number of days to look back (default: 7).
+
+**Get post analytics**
+```bash
+postiz analytics:post <post-id>
+postiz analytics:post <post-id> -d 30
+```
+
+Returns metrics like likes, comments, shares, and impressions for a specific published post.
+
+---
+
 ### Media Upload
 
 **Upload file and get URL**
@@ -483,6 +503,8 @@ The CLI interacts with these Postiz API endpoints:
 | `/public/v1/integrations` | GET | List integrations |
 | `/public/v1/integration-settings/:id` | GET | Get integration settings |
 | `/public/v1/integration-trigger/:id` | POST | Trigger integration tool |
+| `/public/v1/analytics/:integration` | GET | Get platform analytics |
+| `/public/v1/analytics/post/:postId` | GET | Get post analytics |
 | `/public/v1/upload` | POST | Upload media |
 
 ---
@@ -528,6 +550,7 @@ src/
 └── commands/
     ├── posts.ts          # Post management commands
     ├── integrations.ts   # Integration commands
+    ├── analytics.ts      # Analytics commands
     └── upload.ts         # Media upload command
 examples/                 # Example scripts and JSON files
 package.json
@@ -582,6 +605,12 @@ postiz posts:create --json file.json                                            
 postiz posts:list                                  # List posts
 postiz posts:delete <id>                          # Delete post
 postiz upload <file>                              # Upload media
+
+# Analytics
+postiz analytics:platform <id>                    # Platform analytics (7 days)
+postiz analytics:platform <id> -d 30             # Platform analytics (30 days)
+postiz analytics:post <id>                        # Post analytics (7 days)
+postiz analytics:post <id> -d 30                 # Post analytics (30 days)
 
 # Help
 postiz --help                                     # Show help
