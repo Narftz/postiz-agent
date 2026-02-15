@@ -137,6 +137,19 @@ export class PostizAPI {
     return await response.json();
   }
 
+  async getMissingContent(postId: string) {
+    return this.request(`/public/v1/posts/${postId}/missing`, {
+      method: 'GET',
+    });
+  }
+
+  async updateReleaseId(postId: string, releaseId: string) {
+    return this.request(`/public/v1/posts/${postId}/release-id`, {
+      method: 'PUT',
+      body: JSON.stringify({ releaseId }),
+    });
+  }
+
   async getAnalytics(integrationId: string, date: string) {
     return this.request(`/public/v1/analytics/${integrationId}?date=${encodeURIComponent(date)}`, {
       method: 'GET',

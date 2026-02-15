@@ -190,6 +190,37 @@ postiz analytics:post <post-id> -d 30
 
 Returns metrics like likes, comments, shares, and impressions for a specific published post.
 
+**⚠️ If `analytics:post` returns `{"missing": true}`**, the post was published but the platform didn't return a usable post ID. You must resolve this before analytics will work:
+
+```bash
+# 1. List available content from the provider
+postiz posts:missing <post-id>
+
+# 2. Connect the correct content to the post
+postiz posts:connect <post-id> --release-id "7321456789012345678"
+
+# 3. Analytics will now work
+postiz analytics:post <post-id>
+```
+
+---
+
+### Connecting Missing Posts
+
+Some platforms (e.g. TikTok) don't return a post ID immediately after publishing. The post's `releaseId` is set to `"missing"` and analytics won't work until resolved.
+
+**List available content from the provider**
+```bash
+postiz posts:missing <post-id>
+```
+
+Returns an array of `{id, url}` items representing recent content from the provider. Returns an empty array if the provider doesn't support this feature.
+
+**Connect a post to its published content**
+```bash
+postiz posts:connect <post-id> --release-id "<content-id>"
+```
+
 ---
 
 ### Media Upload
@@ -348,6 +379,7 @@ The CLI enables dynamic discovery of integration capabilities:
 2. **Get settings** - Retrieve character limits, required fields, and available tools
 3. **Trigger tools** - Fetch dynamic data (flairs, playlists, boards, etc.)
 4. **Create posts** - Use discovered data in posts
+5. **Analyze** - Get post analytics; if `{"missing": true}` is returned, resolve with `posts:missing` + `posts:connect`
 
 This allows AI agents to adapt to different platforms without hardcoded knowledge.
 
@@ -500,6 +532,8 @@ The CLI interacts with these Postiz API endpoints:
 | `/public/v1/posts` | POST | Create a post |
 | `/public/v1/posts` | GET | List posts |
 | `/public/v1/posts/:id` | DELETE | Delete a post |
+| `/public/v1/posts/:id/missing` | GET | Get missing content from provider |
+| `/public/v1/posts/:id/release-id` | PUT | Update release ID for a post |
 | `/public/v1/integrations` | GET | List integrations |
 | `/public/v1/integration-settings/:id` | GET | Get integration settings |
 | `/public/v1/integration-trigger/:id` | POST | Trigger integration tool |
@@ -535,6 +569,7 @@ The CLI provides clear error messages with exit codes:
 | `Invalid settings` | Check `integrations:settings` for required fields |
 | `Tool not found` | Check available tools in `integrations:settings` output |
 | `Upload failed` | Verify file exists and format is supported |
+| `analytics:post` returns `{"missing": true}` | Run `posts:missing <id>` then `posts:connect <id> --release-id "<rid>"` |
 
 ---
 
@@ -611,6 +646,9 @@ postiz analytics:platform <id>                    # Platform analytics (7 days)
 postiz analytics:platform <id> -d 30             # Platform analytics (30 days)
 postiz analytics:post <id>                        # Post analytics (7 days)
 postiz analytics:post <id> -d 30                 # Post analytics (30 days)
+# If analytics:post returns {"missing": true}, resolve it:
+postiz posts:missing <id>                         # List provider content
+postiz posts:connect <id> --release-id "<rid>"    # Connect content to post
 
 # Help
 postiz --help                                     # Show help

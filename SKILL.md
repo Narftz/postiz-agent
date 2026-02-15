@@ -22,6 +22,7 @@ The fundamental pattern for using Postiz CLI:
 3. **Prepare** - Upload media files if needed
 4. **Post** - Create posts with content, media, and platform-specific settings
 5. **Analyze** - Track performance with platform and post-level analytics
+6. **Resolve** - If analytics returns `{"missing": true}`, run `posts:missing` to list provider content, then `posts:connect` to link it
 
 ```bash
 # 1. Discover
@@ -40,6 +41,10 @@ postiz posts:create -c "Content" -m "image.jpg" -i "<integration-id>"
 # 5. Analyze
 postiz analytics:platform <integration-id> -d 30
 postiz analytics:post <post-id> -d 7
+
+# 6. Resolve (if analytics returns {"missing": true})
+postiz posts:missing <post-id>
+postiz posts:connect <post-id> --release-id "<content-id>"
 ```
 
 ---
@@ -134,6 +139,39 @@ postiz analytics:post <post-id> -d 30
 ```
 
 Returns an array of metrics (e.g. Followers, Impressions, Likes, Comments) with daily data points and percentage change over the period.
+
+**⚠️ IMPORTANT: Missing Release ID Handling**
+
+If `analytics:post` returns `{"missing": true}` instead of an analytics array, the post was published but the platform didn't return a usable post ID. You **must** resolve this before analytics will work:
+
+```bash
+# 1. analytics:post returns {"missing": true}
+postiz analytics:post <post-id>
+
+# 2. Get available content from the provider
+postiz posts:missing <post-id>
+# Returns: [{"id": "7321456789012345678", "url": "https://...cover.jpg"}, ...]
+
+# 3. Connect the correct content to the post
+postiz posts:connect <post-id> --release-id "7321456789012345678"
+
+# 4. Now analytics will work
+postiz analytics:post <post-id>
+```
+
+### Connecting Missing Posts
+
+Some platforms (e.g. TikTok) don't return a post ID immediately after publishing. When this happens, the post's `releaseId` is set to `"missing"` and analytics are unavailable until resolved.
+
+```bash
+# List recent content from the provider for a post with missing release ID
+postiz posts:missing <post-id>
+
+# Connect a post to its published content
+postiz posts:connect <post-id> --release-id "<content-id>"
+```
+
+Returns an empty array if the provider doesn't support this feature or if the post doesn't have a missing release ID.
 
 ### Media Upload
 
@@ -604,6 +642,7 @@ postiz posts:create \
 8. **Character limits** - Each platform has different limits, check `maxLength` in settings
 9. **Required settings** - Some platforms require specific settings (Reddit needs title, YouTube needs title)
 10. **Media MIME types** - CLI auto-detects from file extension, ensure correct extension
+11. **Analytics returns `{"missing": true}`** - The post was published but the platform didn't return a post ID. Run `posts:missing <post-id>` to get available content, then `posts:connect <post-id> --release-id "<id>"` to link it. Analytics will work after connecting.
 
 ---
 
@@ -636,6 +675,9 @@ postiz analytics:platform <id>                    # Platform analytics (7 days)
 postiz analytics:platform <id> -d 30             # Platform analytics (30 days)
 postiz analytics:post <id>                        # Post analytics (7 days)
 postiz analytics:post <id> -d 30                 # Post analytics (30 days)
+# If analytics:post returns {"missing": true}, resolve it:
+postiz posts:missing <id>                         # List provider content
+postiz posts:connect <id> --release-id "<rid>"    # Connect content to post
 
 # Help
 postiz --help                                     # Show help
