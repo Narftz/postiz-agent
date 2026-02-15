@@ -2,6 +2,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { createPost, listPosts, deletePost } from './commands/posts';
 import { listIntegrations, getIntegrationSettings, triggerIntegrationTool } from './commands/integrations';
+import { getAnalytics, getPostAnalytics } from './commands/analytics';
 import { uploadFile } from './commands/upload';
 import type { Argv } from 'yargs';
 
@@ -215,6 +216,58 @@ yargs(hideBin(process.argv))
         );
     },
     triggerIntegrationTool as any
+  )
+  .command(
+    'analytics:platform <id>',
+    'Get analytics for a specific integration/channel',
+    (yargs: Argv) => {
+      return yargs
+        .positional('id', {
+          describe: 'Integration ID',
+          type: 'string',
+        })
+        .option('date', {
+          alias: 'd',
+          describe: 'Number of days to look back (default: 7)',
+          type: 'string',
+          default: '7',
+        })
+        .example(
+          '$0 analytics:platform integration-123',
+          'Get last 7 days of analytics'
+        )
+        .example(
+          '$0 analytics:platform integration-123 -d 30',
+          'Get last 30 days of analytics'
+        );
+    },
+    getAnalytics as any
+  )
+  .command(
+    'analytics:post <id>',
+    'Get analytics for a specific post',
+    (yargs: Argv) => {
+      return yargs
+        .positional('id', {
+          describe: 'Post ID',
+          type: 'string',
+        })
+        .option('date', {
+          alias: 'd',
+          describe: 'Number of days to look back (default: 7)',
+          type: 'string',
+          default: '7',
+        })
+        .example(
+          '$0 analytics:post post-123',
+          'Get last 7 days of post analytics'
+        )
+        .example(
+          '$0 analytics:post post-123 -d 30',
+          'Get last 30 days of post analytics'
+        );
+    },
+    getPostAnalytics as any
   )
   .command(
     'upload <file>',

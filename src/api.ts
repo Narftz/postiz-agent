@@ -137,6 +137,18 @@ export class PostizAPI {
     return await response.json();
   }
 
+  async getAnalytics(integrationId: string, date: string) {
+    return this.request(`/public/v1/analytics/${integrationId}?date=${encodeURIComponent(date)}`, {
+      method: 'GET',
+    });
+  }
+
+  async getPostAnalytics(postId: string, date: string) {
+    return this.request(`/public/v1/analytics/post/${postId}?date=${encodeURIComponent(date)}`, {
+      method: 'GET',
+    });
+  }
+
   async listIntegrations() {
     return this.request('/public/v1/integrations', {
       method: 'GET',
