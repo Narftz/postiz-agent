@@ -2,6 +2,50 @@ import { PostizAPI } from '../api';
 import { getConfig } from '../config';
 import { readFileSync, existsSync } from 'fs';
 
+export async function getMissingContent(args: any) {
+  const config = getConfig();
+  const api = new PostizAPI(config);
+
+  if (!args.id) {
+    console.error('❌ Post ID is required');
+    process.exit(1);
+  }
+
+  try {
+    const result = await api.getMissingContent(args.id);
+    console.log(JSON.stringify(result, null, 2));
+    return result;
+  } catch (error: any) {
+    console.error('❌ Failed to get missing content:', error.message);
+    process.exit(1);
+  }
+}
+
+export async function connectPost(args: any) {
+  const config = getConfig();
+  const api = new PostizAPI(config);
+
+  if (!args.id) {
+    console.error('❌ Post ID is required');
+    process.exit(1);
+  }
+
+  if (!args.releaseId) {
+    console.error('❌ --release-id is required');
+    process.exit(1);
+  }
+
+  try {
+    const result = await api.updateReleaseId(args.id, args.releaseId);
+    console.log(`✅ Post ${args.id} connected to release ${args.releaseId}`);
+    console.log(JSON.stringify(result, null, 2));
+    return result;
+  } catch (error: any) {
+    console.error('❌ Failed to connect post:', error.message);
+    process.exit(1);
+  }
+}
+
 export async function createPost(args: any) {
   const config = getConfig();
   const api = new PostizAPI(config);

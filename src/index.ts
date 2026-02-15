@@ -1,6 +1,6 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { createPost, listPosts, deletePost } from './commands/posts';
+import { createPost, listPosts, deletePost, getMissingContent, connectPost } from './commands/posts';
 import { listIntegrations, getIntegrationSettings, triggerIntegrationTool } from './commands/integrations';
 import { getAnalytics, getPostAnalytics } from './commands/analytics';
 import { uploadFile } from './commands/upload';
@@ -157,6 +157,43 @@ yargs(hideBin(process.argv))
         .example('$0 posts:delete abc123', 'Delete post with ID abc123');
     },
     deletePost as any
+  )
+  .command(
+    'posts:missing <id>',
+    'List available content from the provider for a post with missing release ID',
+    (yargs: Argv) => {
+      return yargs
+        .positional('id', {
+          describe: 'Post ID',
+          type: 'string',
+        })
+        .example(
+          '$0 posts:missing post-123',
+          'Get available content to connect to a post'
+        );
+    },
+    getMissingContent as any
+  )
+  .command(
+    'posts:connect <id>',
+    'Connect a post to its published content by updating the release ID',
+    (yargs: Argv) => {
+      return yargs
+        .positional('id', {
+          describe: 'Post ID',
+          type: 'string',
+        })
+        .option('release-id', {
+          describe: 'The platform-specific content ID to connect',
+          type: 'string',
+          demandOption: true,
+        })
+        .example(
+          '$0 posts:connect post-123 --release-id "7321456789012345678"',
+          'Connect a post to its published content'
+        );
+    },
+    connectPost as any
   )
   .command(
     'integrations:list',
