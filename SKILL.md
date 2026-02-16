@@ -13,6 +13,7 @@ npm install -g postiz
 pnpm install -g postiz
 ```
 
+npm release: https://www.npmjs.com/package/postiz
 ---
 
 
