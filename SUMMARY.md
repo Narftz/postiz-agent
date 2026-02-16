@@ -27,8 +27,7 @@ apps/cli/
 │       └── upload.ts             # Media upload
 │
 ├── examples/                     # Usage examples
-│   ├── basic-usage.sh            # Bash example
-│   └── ai-agent-example.js       # AI agent example
+│   └── basic-usage.sh            # Bash example
 │
 ├── Documentation (5 files)
 │   ├── README.md                 # Main documentation
@@ -173,11 +172,6 @@ function postToSocial(content) {
    - Shell script demonstration
    - Complete workflow example
    - Error handling
-
-2. **ai-agent-example.js**
-   - Node.js agent implementation
-   - Batch post creation
-   - JSON parsing
 
 ## 🧪 Testing
 

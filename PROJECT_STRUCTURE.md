@@ -18,8 +18,7 @@ apps/cli/
 │       └── upload.ts             # Media upload command
 │
 ├── examples/                     # Usage examples
-│   ├── basic-usage.sh            # Shell script example
-│   └── ai-agent-example.js       # Node.js AI agent example
+│   └── basic-usage.sh            # Shell script example
 │
 ├── dist/                         # Build output (generated)
 │   ├── index.js                  # Compiled CLI executable
@@ -137,12 +136,6 @@ apps/cli/
 - Bash script example
 - Demonstrates basic CLI workflow
 - Shows integration listing, post creation, and deletion
-
-#### `examples/ai-agent-example.js`
-- Node.js script for AI agents
-- Programmatic CLI usage
-- Batch post creation
-- JSON parsing examples
 
 ## Build Process
 

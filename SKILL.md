@@ -621,7 +621,6 @@ postiz posts:create \
 **Ready-to-use examples:**
 - [examples/EXAMPLES.md](./examples/EXAMPLES.md) - Comprehensive examples
 - [examples/basic-usage.sh](./examples/basic-usage.sh) - Shell script basics
-- [examples/ai-agent-example.js](./examples/ai-agent-example.js) - Node.js agent
 - [examples/post-with-comments.json](./examples/post-with-comments.json) - Threading example
 - [examples/multi-platform-with-settings.json](./examples/multi-platform-with-settings.json) - Campaign example
 - [examples/youtube-video.json](./examples/youtube-video.json) - YouTube with tags
